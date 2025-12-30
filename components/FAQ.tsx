@@ -32,7 +32,7 @@ export const FAQ: React.FC = () => {
 
   return (
     <section id="faq" className="py-24 md:py-32 bg-white font-sans">
-      <div className="container mx-auto px-4 max-w-3xl">
+      <div className="mx-auto px-4 max-w-3xl">
         <div className="text-center mb-16">
           <h2 className="text-3xl md:text-[44px] font-bold mb-4 text-[#063326] leading-tight">
             Confiança e <span className="font-normal italic">Transparência</span>
