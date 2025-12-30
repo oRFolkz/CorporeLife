@@ -1,76 +1,80 @@
 
-import React from 'react';
+import React, { useState, useEffect } from 'react';
 import { useReveal } from '../hooks/useReveal';
 
 export const Hero: React.FC = () => {
   const reveal = useReveal();
+  const [scrollY, setScrollY] = useState(0);
 
-  const checklist = [
-    "94% de alívio em dores nas pernas e articulações.",
-    "Potência Ozonizada: Arnica + Cânfora + Menta.",
-    "Dermatologicamente testado e seguro para uso diário."
-  ];
+  useEffect(() => {
+    const handleScroll = () => {
+      setScrollY(window.scrollY);
+    };
+    window.addEventListener('scroll', handleScroll, { passive: true });
+    return () => window.removeEventListener('scroll', handleScroll);
+  }, []);
+
+  // Fator de movimento para o efeito de descida (parallax)
+  const translateY = scrollY * 0.2;
 
   return (
-    <section id="beneficios" className="pt-24 pb-48 bg-white overflow-visible">
-      <div className="container mx-auto px-4">
+    <section className="relative min-h-[85vh] flex items-center overflow-hidden bg-white pt-20 pb-12">
+      <div className="container mx-auto px-4 relative z-10">
         <div className="flex flex-wrap -mx-4 items-center">
-          {/* Coluna de Texto - Bootstrap-like Grid */}
-          <div className="w-full lg:w-6/12 px-4 mb-16 lg:mb-0">
+          {/* Texto à Esquerda (60%) */}
+          <div className="w-full lg:w-7/12 px-4 mb-12 lg:mb-0">
             <div ref={reveal.ref} className={`animeTexto ${reveal.className}`}>
-              <h1 className="text-[38px] md:text-[54px] font-voyage text-gray-900 mb-8 leading-[1.1] uppercase tracking-wider">
-                Liberdade de movimento: <br />
-                <span className="text-[#063326]">O único Blend Ozonizado</span> <br />
-                que trata sua dor e modela seu corpo.
+              <span className="text-16 font-bold tracking-[0.3em] text-[#deb357] uppercase mb-6 block">
+                Bem-estar que se sente na pele
+              </span>
+              <h1 className="text-4xl md:text-[56px] font-bold text-[#063326] mb-6 leading-[1.1] tracking-tight">
+                O Poder da Ozonização <br className="hidden md:block" />
+                no Cuidado <span className="font-normal italic">Corporal Diário</span>
               </h1>
               
-              <h2 className="text-gray-500 text-lg md:text-xl mb-12 leading-relaxed max-w-xl font-sans font-light">
-                Não escolha entre saúde e estética. O N2 Recupera Blend utiliza a tecnologia do ozônio ativo para eliminar dores articulares, potencializar seu treino e reduzir medidas simultaneamente.
-              </h2>
+              <p className="text-[#555] text-lg md:text-xl mb-8 leading-relaxed max-w-2xl font-light">
+                AEROZON foi criado para quem busca conforto imediato, frescor e praticidade no cuidado corporal. Sua fórmula com óleo ozonizado estabilizado é aplicada em spray, formando uma névoa leve que não pesa, não deixa resíduos e não suja as mãos.
+              </p>
 
-              {/* Checklist Vertical */}
-              <div className="space-y-6 mb-12">
-                {checklist.map((item, index) => (
-                  <div key={index} className="flex items-center gap-4">
-                    <div className="flex-shrink-0 w-5 h-5 rounded-full bg-[#063326]/10 flex items-center justify-center">
-                      <i className="fa-solid fa-check text-[#063326] text-[10px]"></i>
-                    </div>
-                    <span className="text-gray-700 font-medium font-sans text-base">
-                      {item}
-                    </span>
-                  </div>
-                ))}
+              <div className="bg-[#F8F9FA] p-8 border-l-4 border-[#deb357] rounded-r-xl mb-10 max-w-xl shadow-sm">
+                <p className="text-[#3D3935] text-16 leading-relaxed font-light">
+                  A experiência é simples e agradável: aplicação rápida, absorção confortável e uma sensação refrescante que acompanha sua rotina de autocuidado com leveza.
+                </p>
               </div>
 
-              <div className="flex flex-col sm:flex-row gap-6 items-center">
-                <button className="w-full sm:w-auto bg-[#063326] text-white px-12 py-5 text-sm font-bold uppercase tracking-[0.2em] hover:bg-black transition-all shadow-xl hover:-translate-y-1">
-                  EXPERIMENTAR TECNOLOGIA OZONIZADA
+              <div className="flex flex-col sm:flex-row items-center gap-6">
+                <button className="w-full sm:w-auto bg-[#063326] text-white px-10 py-5 text-16 font-bold uppercase tracking-[0.2em] hover:bg-black transition-all shadow-xl hover:-translate-y-1 rounded-xl">
+                  Conhecer a experiência AEROZON
                 </button>
+                <div className="flex items-center gap-2">
+                  <span className="text-16 text-gray-400 font-bold uppercase tracking-wider">
+                    Dermatologicamente Testado
+                  </span>
+                </div>
               </div>
             </div>
           </div>
 
-          {/* Coluna de Imagens - Estrutura de Invasão da Referência */}
-          <div className="w-full lg:w-6/12 px-4 relative flex justify-end">
-            <div className={`relative w-full max-w-[580px] ${reveal.className}`}>
-              {/* Imagem Principal (Superior Direita) */}
-              <div className="w-[90%] ml-auto animeZoom shadow-lg">
+          {/* Imagem à Direita (40%) */}
+          <div className="w-full lg:w-5/12 px-4">
+            <div className={`relative w-full max-w-[500px] mx-auto lg:ml-auto ${reveal.className}`}>
+              <div className="shadow-[0_40px_80px_rgba(0,0,0,0.15)] overflow-hidden rounded-2xl aspect-[4/5] relative z-0">
                 <img 
-                  src="https://i.postimg.cc/DZzVNs9Z/Google-AI-Studio-2025-12-29T20-28-50-438Z.png" 
-                  alt="Aplicação N2 Recupera" 
-                  className="w-full h-auto"
+                  src="https://acdn-us.mitiendanube.com/stores/005/950/195/products/oleo-ozonizado-para-cicatricacao-aerosol-1164a9fbb6c6f4dc8917621752886565-1024-1024.webp" 
+                  alt="Aerozon Lifestyle" 
+                  className="w-full h-full object-cover"
                 />
               </div>
               
-              {/* Imagem Sobreposta (Inferior Esquerda) */}
-              <div className="absolute -bottom-20 left-0 w-[55%] z-10">
-                <div className={`transition-all duration-[1500ms] cubic-bezier(0.2, 0, 0.2, 1) shadow-[0_30px_60px_-15px_rgba(0,0,0,0.3)] border-[10px] border-white ${reveal.className === 'active' ? 'opacity-100 translate-y-0' : 'opacity-0 translate-y-10'}`}>
-                  <img 
-                    src="https://i.postimg.cc/MHN8VTrj/Google-AI-Studio-2025-12-29T20-28-24-082Z.png" 
-                    alt="Wellness" 
-                    className="w-full h-auto"
-                  />
-                </div>
+              {/* Elemento flutuante de design - Movido para o Topo Esquerdo com efeito de descida */}
+              <div 
+                className="absolute -top-12 -left-12 bg-white p-6 shadow-2xl rounded-2xl hidden md:block max-w-[220px] border border-gray-50 z-20 transition-transform duration-75 ease-out"
+                style={{ transform: `translateY(${translateY}px)` }}
+              >
+                <p className="text-[#deb357] font-bold text-16 uppercase tracking-widest mb-2">Toque Seco</p>
+                <p className="text-gray-400 text-16 leading-tight font-light">
+                  Fórmula de rápida absorção para o seu dia a dia.
+                </p>
               </div>
             </div>
           </div>

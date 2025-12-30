@@ -4,89 +4,85 @@ import { useReveal } from '../hooks/useReveal';
 
 export const ClinicalResults: React.FC = () => {
   const reveal = useReveal();
-  const stats = [
-    { value: '87%', label: '<strong>Fim do "peso" nas pernas:</strong> menos inchaço e melhor circulação.' },
-    { value: '94%', label: '<strong>Mobilidade recuperada:</strong> sentiram alívio efetivo nas dores.' },
-    { value: '97%', label: '<strong>Pele renovada:</strong> Além de tratar a dor, notaram melhora estética na pele.' },
+
+  const ingredients = [
+    {
+      title: "O MOTOR DA FÓRMULA",
+      subtitle: "Óleo de Girassol Ozonizado (O3)",
+      description: "Rico em ozonídeos ativos, este óleo libera oxigênio nascente diretamente nas células. Ele combate microrganismos, estimula a produção de energia (ATP) mitocondrial e acelera a regeneração de tecidos lesionados. É o combustível para a cura.",
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="w-12 h-12">
+          <circle cx="12" cy="12" r="9" />
+          <path d="M12 7v10M7 12h10" />
+          <circle cx="12" cy="12" r="3" fill="currentColor" fillOpacity="0.1" />
+        </svg>
+      )
+    },
+    {
+      title: "ALÍVIO SENSORIAL",
+      subtitle: "Complexo de Cânfora e Menta",
+      description: "Atuam sinergicamente ativando os receptores térmicos da pele (crioterapia). Isso promove uma analgesia refrescante imediata, \"desligando\" a sensação de dor aguda e proporcionando conforto instantâneo após esforços físicos.",
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="w-12 h-12">
+          <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+          <path d="M8 11l3 3 5-5" strokeLinecap="round" strokeLinejoin="round" />
+        </svg>
+      )
+    },
+    {
+      title: "RECUPERAÇÃO ESTRUTURAL",
+      subtitle: "Extrato Puro de Arnica Montana",
+      description: "Reconhecida mundialmente por sua potência contra traumas físicos. A Arnica reduz edemas (inchaços) e hematomas, modulando a resposta inflamatória para que você recupere a mobilidade e a estética da pele mais rápido.",
+      icon: (
+        <svg viewBox="0 0 24 24" fill="none" stroke="currentColor" strokeWidth="1" className="w-12 h-12">
+          <path d="M12 2L15.09 8.26L22 9.27L17 14.14L18.18 21.02L12 17.77L5.82 21.02L7 14.14L2 9.27L8.91 8.26L12 2Z" />
+        </svg>
+      )
+    }
   ];
 
-  const marqueeText = "N2 RECUPERA BLEND • OZÔNIO ATIVO • LIBERDADE DE MOVIMENTO • ";
-
   return (
-    <section id="resultados-clinicos" ref={reveal.ref} className="py-24 md:py-32 bg-[#F5F5F5] relative overflow-hidden">
+    <section id="resultados-clinicos" className="pt-24 md:pt-32 pb-0 bg-[#F8F9FA] relative overflow-hidden font-sans">
       <div className="container mx-auto px-4 relative z-10">
-        <div className="flex flex-wrap items-center justify-center -mx-4">
-          
-          {/* Lado Esquerdo: Bloco de Imagens */}
-          <div className="w-full lg:w-5/12 px-4 mb-12 lg:mb-0">
-            <div className={`relative mx-auto max-w-[500px] ${reveal.className === 'active' ? 'opacity-100 translate-x-0' : 'opacity-0 -translate-x-10'} transition-all duration-1000 ease-out`}>
-              <img 
-                src="https://i.postimg.cc/zBQwrZc7/Generated-Image-December-29-2025-5-21PM.png" 
-                alt="Pattern background" 
-                className="w-full h-auto"
-              />
-            </div>
-          </div>
-
-          {/* Lado Direito: Conteúdo e Estatísticas */}
-          <div className="w-full lg:w-6/12 px-4 lg:pl-16">
-            <h2 className="text-[34px] md:text-[48px] font-voyage text-[#063326] mb-6 leading-tight uppercase tracking-wider font-bold">
-              Eficácia Clínica Comprovada: <br />
-              <span className="font-light">Contra fatos não há dor.</span>
-            </h2>
-            
-            <p className="text-gray-600 text-lg mb-12 leading-relaxed font-sans font-light max-w-xl">
-              Submetemos a <strong>fórmula exclusiva do N2 Recupera Blend</strong> a testes rigorosos de eficácia percebida. O resultado? Uma <strong>aprovação quase unânime</strong> em alívio da dor e regeneração da pele, sem nenhum efeito adverso registrado.
-            </p>
-
-            <div className="relative">
-              {/* Linha vertical conectando os pontos */}
-              <div 
-                className={`absolute left-[3px] top-[25px] bottom-6 w-[1px] bg-[#063326]/20 transition-all duration-1000 origin-top ${reveal.className === 'active' ? 'scale-y-100' : 'scale-y-0'}`}
-              ></div>
-
-              <ul className="space-y-10">
-                {stats.map((stat, idx) => (
-                  <li 
-                    key={idx} 
-                    className={`relative flex items-center animeTexto ${reveal.className}`}
-                    style={{ transitionDelay: `${idx * 150}ms` }}
-                  >
-                    <div className="absolute left-0 w-[7px] h-[7px] rounded-full bg-[#063326] z-10"></div>
-                    
-                    <div className="flex items-center pl-10 md:pl-12">
-                      <span className="text-[38px] md:text-[52px] font-bold text-[#063326] min-w-[100px] md:min-w-[130px] leading-none mr-4">
-                        {stat.value}
-                      </span>
-                      <span className="text-[14px] md:text-[17px] text-[#3D3935] leading-snug max-w-[350px] font-sans" dangerouslySetInnerHTML={{ __html: stat.label }}>
-                      </span>
-                    </div>
-                  </li>
-                ))}
-              </ul>
-            </div>
-          </div>
+        <div ref={reveal.ref} className={`text-center max-w-4xl mx-auto mb-20 animeTexto ${reveal.className}`}>
+          <h2 className="text-3xl md:text-[44px] font-bold text-[#063326] mb-6 leading-tight">
+            Engenharia Natural de <br />
+            <span className="italic font-normal">Alta Performance</span>
+          </h2>
+          <p className="text-gray-600 text-16 md:text-lg font-light leading-relaxed">
+            Uma fusão precisa de <strong>Biotecnologia Ozonizada</strong> e Fitoterapia Avançada. Entenda como cada gota trabalha a seu favor.
+          </p>
         </div>
 
-        {/* Nota de Rodapé */}
-        <div className="mt-24 pt-10 border-t border-gray-200/60 max-w-5xl mx-auto">
-          <div className="opacity-50 italic text-center lg:text-left">
-            <p className="text-[10px] md:text-[11px] text-[#847F7A] leading-relaxed font-sans">
-              *Estudo realizado com foco em <strong>eficácia clínica e percepção do usuário</strong> após 30 dias de uso contínuo do N2 Recupera.
-            </p>
-          </div>
-        </div>
-      </div>
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative items-stretch">
+          {ingredients.map((item, idx) => (
+            <div 
+              key={idx}
+              className={`bg-white p-8 md:p-10 shadow-[0_20px_50px_rgba(0,0,0,0.03)] border border-gray-100 flex flex-col h-full animeTexto relative z-10 transition-all duration-700 hover:shadow-2xl hover:-translate-y-2 rounded-xl ${reveal.className}`}
+              style={{ transitionDelay: `${idx * 200}ms` }}
+            >
+              <div className="mb-6 text-[#063326] flex justify-center md:justify-start">
+                <div className="p-4 rounded-full bg-[#F0F4F2] text-[#063326]">
+                  <div className="w-10 h-10 flex items-center justify-center">
+                    {item.icon}
+                  </div>
+                </div>
+              </div>
 
-      <div className="w-full mt-20 py-10 bg-transparent border-y border-[#063326]/10">
-        <div className="marquee-wrapper">
-          <div className="marquee-content">
-            {[...Array(12)].map((_, i) => (
-              <span key={i} className="marquee-item !text-[#063326]">
-                {marqueeText}
-              </span>
-            ))}
-          </div>
+              <div className="mb-4">
+                <span className="text-16 font-bold uppercase tracking-[0.2em] text-[#063326]/40 mb-2 block">
+                  {item.title}
+                </span>
+                <h4 className="text-lg md:text-xl font-bold text-[#063326] leading-tight">
+                  {item.subtitle}
+                </h4>
+              </div>
+
+              <p className="text-gray-500 text-16 leading-relaxed font-light">
+                {item.description}
+              </p>
+            </div>
+          ))}
         </div>
       </div>
     </section>

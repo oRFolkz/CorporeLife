@@ -8,18 +8,28 @@
   <script src="https://cdn.tailwindcss.com"></script>
   <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.4.0/css/all.min.css">
   <style>
-    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&family=Cormorant+Garamond:ital,wght@0,300;0,400;0,500;0,600;0,700;1,300;1,400;1,500;1,600;1,700&display=swap');
+    @import url('https://fonts.googleapis.com/css2?family=Montserrat:wght@300;400;500;600;700;800;900&display=swap');
     
+    :root {
+      --font-main: 'Montserrat', sans-serif;
+    }
+
     body {
-      font-family: 'Montserrat', sans-serif;
+      font-family: var(--font-main);
       scroll-behavior: smooth;
       color: #3D3935;
       overflow-x: hidden;
       -webkit-font-smoothing: antialiased;
     }
 
-    h1, h2, h3, h4, h5, h6, .font-voyage {
-      font-family: 'Cormorant Garamond', serif;
+    /* Classe específica para garantir 16px em textos de corpo e labels */
+    .text-16 {
+      font-size: 16px !important;
+    }
+
+    /* Override global para garantir que nenhuma classe legada quebre o padrão */
+    h1, h2, h3, h4, h5, h6, p, span, a, button, li, div {
+      font-family: var(--font-main) !important;
     }
 
     /* Animações de entrada */
@@ -38,16 +48,16 @@
       overflow: hidden;
     }
 
-    .animeZoom img {
+    .animeZoom img, .animeZoom video {
       transition: transform 2s cubic-bezier(0.2, 0, 0.2, 1);
       transform: scale(1.1);
     }
 
-    .animeZoom.active img {
+    .animeZoom.active img, .animeZoom.active video {
       transform: scale(1);
     }
 
-    /* Nova Animação de Letreiro (Texto) */
+    /* Animação de Letreiro */
     @keyframes scrollText {
       from { transform: translateX(0); }
       to { transform: translateX(-50%); }
@@ -68,9 +78,8 @@
     }
 
     .marquee-item {
-      font-family: 'Cormorant Garamond', serif;
-      font-size: 3rem;
-      font-weight: 300;
+      font-size: 2rem;
+      font-weight: 800;
       color: #063326;
       letter-spacing: 0.15em;
       text-transform: uppercase;
@@ -81,7 +90,7 @@
 
     @media (max-width: 767px) {
       .marquee-item {
-        font-size: 1.5rem;
+        font-size: 1.2rem;
         padding: 0 1rem;
       }
       .marquee-content {

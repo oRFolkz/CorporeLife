@@ -12,36 +12,48 @@ export const FAQ: React.FC = () => {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   const items: FAQItem[] = [
-    { question: 'INGREDIENTES', answer: 'True Skin contém microesferas de semente de damasco, blend de hidroxiácidos (PHA e BHA), e agentes de limpeza suaves derivados de fontes vegetais.' },
-    { question: 'GLUCONOLACTONA', answer: 'Um PHA (polihidroxiácido) que atua na renovação celular de forma extremamente gentil, ideal para peles sensíveis, além de ter propriedades hidratantes.' },
-    { question: 'ÁCIDO SALICÍLICO', answer: 'Um BHA (beta-hidroxiácido) que penetra nos poros, ajudando a controlar a oleosidade e prevenir o aparecimento de cravos e espinhas.' },
-    { question: 'SEMENTES DE DAMASCO', answer: 'Microesferas naturais e biodegradáveis que realizam a esfoliação física mecânica, removendo células mortas sem agredir o meio ambiente.' },
-    { question: 'ATIVO DE LIMPEZA BIODEGRADÁVEL', answer: 'Utilizamos agentes de limpeza de fonte vegetal (milho), que limpam profundamente respeitando a barreira cutânea e a biodiversidade marinha.' },
-    { question: 'ARTIGOS', answer: 'Acesse nosso blog para ler estudos científicos sobre os benefícios da esfoliação e da clean beauty na rotina de skincare.' }
+    { 
+      question: 'O produto tem cheiro forte?', 
+      answer: 'Não. A formulação foi desenvolvida para oferecer um aroma leve e agradável, evitando o odor intenso característico de óleos ozonizados tradicionais.' 
+    },
+    { 
+      question: 'Posso usar todos os dias?', 
+      answer: 'Sim. AEROZON foi pensado para uso tópico frequente, integrando rotinas diárias de cuidado corporal e promovendo bem-estar contínuo.' 
+    },
+    { 
+      question: 'Precisa espalhar com as mãos?', 
+      answer: 'Não é necessário. A aplicação em spray permite uma cobertura uniforme e uma névoa fina que é absorvida naturalmente pela pele sem necessidade de fricção.' 
+    },
+    { 
+      question: 'É um medicamento?', 
+      answer: 'Não. AEROZON é um produto cosmético de uso tópico, dermatologicamente testado, voltado para o cuidado, conforto e bem-estar da pele.' 
+    }
   ];
 
   return (
-    <section id="faq" className="py-32 bg-white">
-      <div className="container mx-auto px-4 max-w-4xl">
+    <section id="faq" className="py-24 md:py-32 bg-white font-sans">
+      <div className="container mx-auto px-4 max-w-3xl">
         <div className="text-center mb-16">
-          <h2 className="text-4xl md:text-5xl font-voyage mb-4 text-gray-900 uppercase tracking-widest">CADA DETALHE É ESSENCIAL</h2>
-          <p className="text-gray-500 max-w-2xl mx-auto">
-            Todos os nossos produtos levam o propósito de oferecer as melhores matérias-primas do mundo em soluções inteligentes. Isso significa pensar em todos os detalhes, desde o que tem e também o que não tem em cada produto.
-          </p>
+          <h2 className="text-3xl md:text-[44px] font-bold mb-4 text-[#063326] leading-tight">
+            Confiança e <span className="font-normal italic">Transparência</span>
+          </h2>
+          <p className="text-gray-500 text-lg font-light">Tire suas dúvidas sobre a experiência AEROZON.</p>
         </div>
 
         <div ref={reveal.ref} className={`space-y-4 animeTexto ${reveal.className}`}>
           {items.map((item, idx) => (
-            <div key={idx} className="border-b border-gray-100">
+            <div key={idx} className="bg-[#F8F9FA] rounded-2xl overflow-hidden shadow-sm border border-gray-100">
               <button 
-                className="w-full py-6 flex justify-between items-center text-left hover:text-rose-900 transition-colors"
+                className="w-full p-6 flex justify-between items-center text-left hover:text-[#063326] transition-colors gap-4"
                 onClick={() => setOpenIndex(openIndex === idx ? null : idx)}
               >
-                <span className="font-bold tracking-widest text-sm uppercase">{item.question}</span>
-                <i className={`fa-solid ${openIndex === idx ? 'fa-minus' : 'fa-plus'} text-xs text-gray-400`}></i>
+                <span className="font-bold text-16 text-[#063326]">
+                  {item.question}
+                </span>
+                <i className={`fa-solid ${openIndex === idx ? 'fa-minus' : 'fa-plus'} text-[#063326] opacity-30`}></i>
               </button>
-              <div className={`overflow-hidden transition-all duration-300 ${openIndex === idx ? 'max-h-40 pb-6' : 'max-h-0'}`}>
-                <p className="text-gray-600 leading-relaxed">
+              <div className={`overflow-hidden transition-all duration-300 ${openIndex === idx ? 'max-h-60 p-6 pt-0' : 'max-h-0'}`}>
+                <p className="text-gray-500 text-16 leading-relaxed font-light border-t border-gray-100 pt-4">
                   {item.answer}
                 </p>
               </div>
